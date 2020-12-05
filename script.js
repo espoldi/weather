@@ -1,5 +1,7 @@
 // Data pulled from user
 var cityName = "";
+var lat = 0;
+var lon = 0;
 
 // API key
 var APIKey = "b3ba97da6b3e519c3ebd004958f21e41";
