@@ -1,15 +1,19 @@
-header {
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
+header {
+    background-color: darkslategrey;
+    color: white;
+    text-align: center;
 }
 
 aside {
-
+    background-color: whitesmoke;
+    float: left;
+    width: 25%;
 }
 
 main {
-
-}
-
-footer {
-    
+    background-color: white;
 }

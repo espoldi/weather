@@ -1,3 +1,6 @@
+// Data pulled from user
+var cityName = "";
+
 // API key
 var APIKey = "b3ba97da6b3e519c3ebd004958f21e41";
 
