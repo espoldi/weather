@@ -7,8 +7,8 @@ var lon = 0;
 
 
 // URLs to pull from API
-var currentWeather = `api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
+var currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
 
-var forcastFive = `api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+var forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
 
-var uvIndex = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+var uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`;
