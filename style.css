@@ -20,6 +20,10 @@ aside {
     width: fit-content;
 }
 
+form {
+    text-align: center;
+}
+
 main {
     background-color: white;
     float: right;
