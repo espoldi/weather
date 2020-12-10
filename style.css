@@ -12,12 +12,17 @@ header {
     text-align: center;
     padding-top: 1em;
     padding-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 aside {
     background-color: whitesmoke;
+    border: 2px solid lightgrey;
+    border-radius: 3px;
     float: left;
-    width: fit-content;
+    width: 30%;
+    padding: 1em;
+    margin-left: 1em;
 }
 
 form {
@@ -25,8 +30,15 @@ form {
 }
 
 main {
-    background-color: white;
+    background-color: whitesmoke;
+    border: 2px solid lightgrey;
+    border-radius: 3px;
     float: right;
+    width: 59%;
+    margin-left: 0.5em;
+    margin-right: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 h1 {
