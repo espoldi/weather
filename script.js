@@ -47,15 +47,16 @@ function getDetails() {
 
             //Add to search history
             $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
+            //localStorage.setItem(button, cityName);
 
             // Convert the temp to fahrenheit
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
-            //Display weather panel
+            //Display weather data
             $(".name").text(`${response.name}`);
-            $(".temp").text(`Temperature: ${tempF.toFixed(2)}`);
-            $(".humidity").text(`Humidity: ${response.main.humidity}%`);
-            $(".wind").text(`Wind Speed: ${response.wind.speed}MPH`);
+            $(".temp").text(`${tempF.toFixed(2)}`);
+            $(".humidity").text(`${response.main.humidity}%`);
+            $(".wind").text(`${response.wind.speed}MPH`);
 
 
             //Call for UV Index
@@ -64,8 +65,22 @@ function getDetails() {
                 method: "GET"
             })
                 .then(function (response) {
+                    //Set color depending on severity
+                    if (response.value < 3) {
+                        $(".UV").css("background-color", "green");
+                        $(".UV").css("color", "white");
+                    }
+                    if (response.value >= 3 && response.value < 6) {
+                        $(".UV").css("background-color", "gold");
+                        $(".UV").css("color", "white");
+                    }
+                    if (response.value >= 9) {
+                        $(".UV").css("background-color", "red");
+                        $(".UV").css("color", "white");
+                    }
+                    
                     //Display UV
-                    $(".UV").text(`UV Index: ${response.value}`);
+                    $(".UV").html(`${response.value}`);
                 })
 
             //Call for forcast
