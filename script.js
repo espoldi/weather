@@ -23,17 +23,26 @@ $("form").submit(function(event) {
     getDetails();
 });
 
+//API call for information and display
 function getDetails() {
     $.ajax({
         url: currentWeather,
         method: "GET"
-      }).then(function(response) {
+      })
+      
+      .then(function(response) {
+        
+        //API call for UV Index information
         uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
 
-          console.log(currentWeather);
-          console.log(response);
-          console.log(uvIndex);
-          
-          $("section").prepend(`<hr>${response.name}`);
-        });
+        //Add to search history
+        $("section").prepend(`<hr><button id=${response.name}>${response.name}`);
+
+        // Convert the temp to fahrenheit
+        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+        //Display weather panel
+        $("main").append(`<h2>${response.name}`);
+        $("main").append(`<h4>Temperature: ${tempF.toFixed(2)}`);
+      })
 };
