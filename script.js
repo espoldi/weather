@@ -31,10 +31,10 @@ function getDetails() {
       })
       
       .then(function(response) {
-        
+        console.log(response);
         //API call for UV Index information
         uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
-
+        
         //Add to search history
         $("section").prepend(`<hr><button id=${response.name}>${response.name}`);
 
@@ -42,7 +42,21 @@ function getDetails() {
         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
         //Display weather panel
-        $("main").append(`<h2>${response.name}`);
-        $("main").append(`<h4>Temperature: ${tempF.toFixed(2)}`);
+        $(".name").text(`${response.name}`);
+        $(".temp").text(`Temperature: ${tempF.toFixed(2)}`);
+        $(".humidity").text(`Humidity: ${response.main.humidity}%`);
+        $(".wind").text(`Wind Speed: ${response.wind.speed}MPH`);
+
+        //Call for UV Index
+        $.ajax({
+            url: uvIndex,
+            method: "GET"
+        })
+        .then(function(response) {
+            console.log(response);
+            //Display UV
+            $(".UV").text(`UV Index: ${response.value}`);
+        })
+        
       })
 };
