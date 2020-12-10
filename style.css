@@ -4,6 +4,7 @@
 
 body {
     margin: 0%;
+    background-color: whitesmoke;
 }
 
 header {
@@ -16,7 +17,7 @@ header {
 }
 
 aside {
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px solid lightgrey;
     border-radius: 3px;
     float: left;
@@ -30,7 +31,7 @@ form {
 }
 
 main {
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px solid lightgrey;
     border-radius: 3px;
     float: left;

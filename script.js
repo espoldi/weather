@@ -24,7 +24,7 @@ $("form").submit(function (event) {
 });
 
 //Listen for history button resubmission
-$("section").on("click", function(event) {
+$("section").on("click", function (event) {
     //Reset City Variable
     cityName = event.target.value;
     //Reset Links with new city
@@ -42,12 +42,11 @@ function getDetails() {
     })
 
         .then(function (response) {
-            console.log(response);
+            
             //API call for UV Index information
             uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
             //Add to search history
             $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
-            //localStorage.setItem(button, cityName);
 
             // Convert the temp to fahrenheit
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
@@ -79,7 +78,7 @@ function getDetails() {
                         $(".UV").css("background-color", "red");
                         $(".UV").css("color", "white");
                     }
-                    
+
                     //Display UV
                     $(".UV").html(`${response.value}`);
                 })
@@ -92,16 +91,16 @@ function getDetails() {
                 .then(function (response) {
                     //Loop for each day
                     for (let i = 0; i < 5; i++) {
-                        
-                        let spot = 8*i + 3;
-                        
+
+                        let spot = 8 * i + 3;
+
                         let tempNew = (response.list[spot].main.temp - 273.15) * 1.80 + 32;
-                        
+
                         //Block Print out
                         $(`#day${i}`).html(`${response.list[spot].dt_txt}<br>
                         ${response.list[spot].weather[0].main}<br>
                         <img src='http://openweathermap.org/img/wn/${response.list[spot].weather[0].icon}@2x.png'><br>
-                        Temperature: ${tempNew.toFixed(2)}F<br>
+                        Temp: ${tempNew.toFixed(2)}F<br>
                         Humidity: ${response.list[spot].main.humidity}%`);
                     };
                 })
