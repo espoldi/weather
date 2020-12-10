@@ -42,9 +42,9 @@ function getDetails() {
     })
 
         .then(function (response) {
+            console.log(response);
             //API call for UV Index information
             uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
-
             //Add to search history
             $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
             //localStorage.setItem(button, cityName);
@@ -57,6 +57,7 @@ function getDetails() {
             $(".temp").text(`${tempF.toFixed(2)}`);
             $(".humidity").text(`${response.main.humidity}%`);
             $(".wind").text(`${response.wind.speed}MPH`);
+            $(".picture").html(`<img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png'>`);
 
 
             //Call for UV Index
