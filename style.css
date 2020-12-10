@@ -47,7 +47,10 @@ h1 {
 
 .card {
     margin: 0.5em;
-    background-color: mediumseagreen;
+    background-color: darkorchid;
+    padding: 0.25em;
+    border-radius: 7px;
     color: white;
     float: left;
+    text-align: center;
 }

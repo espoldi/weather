@@ -63,19 +63,18 @@ function getDetails() {
                 method: "GET"
             })
                 .then(function (response) {
-                    console.log(response);
                     //Loop for each day
                     for (let i = 0; i < 5; i++) {
                         
                         let spot = 8*i + 3;
                         
-                        let tempF = (response.list[spot].main.temp - 273.15) * 1.80 + 32;
+                        let tempNew = (response.list[spot].main.temp - 273.15) * 1.80 + 32;
                         
                         //Block Print out
                         $(`#day${i}`).html(`${response.list[spot].dt_txt}<br>
                         ${response.list[spot].weather[0].main}<br>
                         <img src='http://openweathermap.org/img/wn/${response.list[spot].weather[0].icon}@2x.png'><br>
-                        Temperature: ${tempF.toFixed(2)}F<br>
+                        Temperature: ${tempNew.toFixed(2)}F<br>
                         Humidity: ${response.list[spot].main.humidity}%`);
                     };
                 })
