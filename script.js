@@ -23,6 +23,17 @@ $("form").submit(function (event) {
     getDetails();
 });
 
+//Listen for history button resubmission
+$("section").on("click", function(event) {
+    //Reset City Variable
+    cityName = event.target.value;
+    //Reset Links with new city
+    currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
+    forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+    //Update display
+    getDetails();
+});
+
 //API call for information and display
 function getDetails() {
     $.ajax({
@@ -35,7 +46,7 @@ function getDetails() {
             uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
 
             //Add to search history
-            $("section").prepend(`<hr><button id=${response.name}>${response.name}`);
+            $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
 
             // Convert the temp to fahrenheit
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
