@@ -1,5 +1,6 @@
 // city data variables
 var cityName = "";
+var cityID = "";
 
 // API key
 var APIKey = "b3ba97da6b3e519c3ebd004958f21e41";
@@ -18,18 +19,20 @@ $("form").submit(function (event) {
     currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
     forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
     // run display for weather
-    getDetails();
+    updateData();
 });
 
 // listen for history button resubmission
 $("section").on("click", function (event) {
     //Reset City Variable
-    cityName = event.target.value;
+    cityID = event.target.value;
+    cityName = event.target.textContent;
+    console.log(cityName);
     //Reset Links with new city
-    currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
-    forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+    currentWeather = `https://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${APIKey}`;
+    forcastFive = `https://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${APIKey}`;
     //Update display
-    getDetails();
+    updateData();
 });
 
 //API call for information and display
@@ -38,13 +41,19 @@ function getDetails() {
         url: currentWeather,
         method: "GET"
     })
-        .then(function (response) { 
+        .then(function (response) {
+            console.log(response);
+
             // update API call for UV Index
             uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
             
-            //Add to search history
-            $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
+            //Find city ID from API
+            cityID = response.id;
+            console.log(cityID);
 
+            //Add to search history
+            $("section").prepend(`<hr><button id=${cityID} value=${cityID}>${cityName}`);
+            
             // Convert the temp to fahrenheit
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
@@ -62,6 +71,8 @@ function getDetails() {
                 method: "GET"
             })
                 .then(function (response) {
+                    console.log(response);
+
                     //Set color depending on severity
                     if (response.value < 3) {
                         $(".UV").css("background-color", "green");
@@ -86,6 +97,8 @@ function getDetails() {
                 method: "GET"
             })
                 .then(function (response) {
+                    console.log(response);
+
                     //Loop for each day
                     for (let i = 0; i < 5; i++) {
 
@@ -105,3 +118,7 @@ function getDetails() {
 
         })
 };
+
+function updateData() {
+    getDetails();
+}
