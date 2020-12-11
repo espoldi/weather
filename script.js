@@ -1,4 +1,4 @@
-// City Data Variables
+// city data variables
 var cityName = "";
 
 // API key
@@ -6,24 +6,22 @@ var APIKey = "b3ba97da6b3e519c3ebd004958f21e41";
 
 // URLs to pull from API
 var currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=&appid=${APIKey}`;
-
 var forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=&appid=${APIKey}`;
-
 var uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=&lon=&appid=${APIKey}`;
 
 // Listen for city name submission
 $("form").submit(function (event) {
     event.preventDefault();
+    // set variable to input data
     cityName = $("#city")[0].value;
-
+    // reset links for API calls
     currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
-
     forcastFive = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
-
+    // run display for weather
     getDetails();
 });
 
-//Listen for history button resubmission
+// listen for history button resubmission
 $("section").on("click", function (event) {
     //Reset City Variable
     cityName = event.target.value;
@@ -40,11 +38,10 @@ function getDetails() {
         url: currentWeather,
         method: "GET"
     })
-
-        .then(function (response) {
-            
-            //API call for UV Index information
+        .then(function (response) { 
+            // update API call for UV Index
             uvIndex = `https://api.openweathermap.org/data/2.5/uvi?lat=${response.coord.lat}&lon=${response.coord.lon}&appid=${APIKey}`;
+            
             //Add to search history
             $("section").prepend(`<hr><button id=${cityName} value=${cityName}>${cityName}`);
 
