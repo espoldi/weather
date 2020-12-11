@@ -58,7 +58,7 @@ function getDetails() {
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
 
             //Display weather data
-            $(".name").text(`${response.name}`);
+            $(".name").text(`${response.name}   ${moment().format('MMMM Do, YYYY')}`);
             $(".temp").text(`${tempF.toFixed(2)}`);
             $(".humidity").text(`${response.main.humidity}%`);
             $(".wind").text(`${response.wind.speed}MPH`);
@@ -107,7 +107,7 @@ function getDetails() {
                         let tempNew = (response.list[spot].main.temp - 273.15) * 1.80 + 32;
 
                         //Block Print out
-                        $(`#day${i}`).html(`${response.list[spot].dt_txt}<br>
+                        $(`#day${i}`).html(`${moment().add((i+1), 'days').calendar()}<br>
                         ${response.list[spot].weather[0].main}<br>
                         <img src='http://openweathermap.org/img/wn/${response.list[spot].weather[0].icon}@2x.png'><br>
                         Temp: ${tempNew.toFixed(2)}F<br>
