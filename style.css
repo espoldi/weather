@@ -1,5 +1,5 @@
 * {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Overpass Mono", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
@@ -44,6 +44,7 @@ main {
 
 h1 {
     margin: 0%;
+    font-family: "Sarina", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .card {
@@ -54,4 +55,9 @@ h1 {
     color: white;
     float: left;
     text-align: center;
+}
+
+.UV {
+    padding: 0.25em;
+    border-radius: 2px;
 }
